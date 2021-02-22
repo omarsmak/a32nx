@@ -184,16 +184,16 @@ async fn fbw(mut gauge: msfs::Gauge) -> MSFSResult {
                 },
                 msfs::sim_connect::SimConnectRecv::Event(event) => match event.id() {
                     e if e == axis_elevator_set => {
-                        interface.sim_input.elevator = event.data() as f64 / 16384.0;
+                        interface.sim_input.elevator = event.data() as std::os::raw::c_long as f64 / 16384.0;
                     }
                     e if e == axis_ailerons_set => {
-                        interface.sim_input.ailerons = event.data() as f64 / 16384.0;
+                        interface.sim_input.ailerons = event.data() as std::os::raw::c_long as f64 / 16384.0;
                     }
                     e if e == axis_rudder_set => {
-                        interface.sim_input.rudder = event.data() as f64 / 16384.0;
+                        interface.sim_input.rudder = event.data() as std::os::raw::c_long as f64 / 16384.0;
                     }
                     e if e == rudder_set => {
-                        interface.sim_input.rudder = event.data() as f64 / 16384.0;
+                        interface.sim_input.rudder = event.data() as std::os::raw::c_long as f64 / 16384.0;
                     }
                     e if e == rudder_left => {
                         interface.sim_input.rudder = (interface.sim_input.rudder + 0.02).min(1.0);
@@ -205,13 +205,13 @@ async fn fbw(mut gauge: msfs::Gauge) -> MSFSResult {
                         interface.sim_input.rudder = (interface.sim_input.rudder - 0.02).max(-1.0);
                     }
                     e if e == rudder_axis_minus => {
-                        interface.sim_input.rudder = 1.0 * event.data() as f64 / 16384.0;
+                        interface.sim_input.rudder = 1.0 * event.data() as std::os::raw::c_long as f64 / 16384.0;
                     }
                     e if e == rudder_axis_plus => {
-                        interface.sim_input.rudder = -1.0 * event.data() as f64 / 16384.0;
+                        interface.sim_input.rudder = -1.0 * event.data() as std::os::raw::c_long as f64 / 16384.0;
                     }
                     e if e == aileron_set => {
-                        interface.sim_input.ailerons = event.data() as f64 / 16384.0;
+                        interface.sim_input.ailerons = event.data() as std::os::raw::c_long as f64 / 16384.0;
                     }
                     e if e == ailerons_left => {
                         interface.sim_input.ailerons =
@@ -226,7 +226,7 @@ async fn fbw(mut gauge: msfs::Gauge) -> MSFSResult {
                         interface.sim_input.ailerons = 0.0;
                     }
                     e if e == elevator_set => {
-                        interface.sim_input.elevator = event.data() as f64 / 16384.0;
+                        interface.sim_input.elevator = event.data() as std::os::raw::c_long as f64 / 16384.0;
                     }
                     e if e == elevator_up => {
                         interface.sim_input.ailerons =
