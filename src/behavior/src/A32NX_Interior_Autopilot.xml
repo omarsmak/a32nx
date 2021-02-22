@@ -73,7 +73,7 @@
             <EMISSIVE_CODE_ACTIVE>(L:A32NX_FCU_APPR_MODE_ACTIVE, bool)</EMISSIVE_CODE_ACTIVE>
         </UseTemplate>
     </Template>
-    
+
  <Template Name="FBW_AUTOPILOT_Knob_SpeedMach_Template">
 		<DefaultTemplateParameters>
 			<ANIM_NAME>AUTOPILOT_Knob_SpeedMach</ANIM_NAME>
@@ -252,18 +252,24 @@
 				<ANTICLOCKWISE_CODE>0 (&gt;L:XMLVAR_SpeedIsManuallySet)</ANTICLOCKWISE_CODE>
 				<CLOCKWISE_CODE>
 					1 (&gt;L:XMLVAR_SpeedIsManuallySet)
-					(A:FLAPS HANDLE INDEX, Number) 0 &gt; if{ 
-						(A:DESIGN SPEED VS0, knots) sp1 
+					(A:FLAPS HANDLE INDEX, Number) 0 &gt; if{
+						(A:DESIGN SPEED VS0, knots) sp1
 					} els{
-						(A:DESIGN SPEED VS1, knots) sp1 
+						(A:DESIGN SPEED VS1, knots) sp1
 					}
 					l1 1.3 * (A:AIRSPEED INDICATED, knots) max (&gt;K:AP_SPD_VAR_SET)
 				</CLOCKWISE_CODE>
 				<WWISE_EVENT>autopilot_speed_mode_knob</WWISE_EVENT>
 				<COUNT>1</COUNT>
-				
+
 			</UseTemplate>
 		</Component>
 	</Template>
+
+	<Template Name="FBW_AutoThrottle_Instinctive_Disconnect_Template">
+        <UseTemplate Name="FBW_Push_Held">
+            <HOLD_SIMVAR>K:A32NX.ATHR_INSTINCTIVE_DISCONNECT</HOLD_SIMVAR>
+        </UseTemplate>
+    </Template>
 
 </ModelBehaviors>
